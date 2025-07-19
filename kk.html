@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask & Python 왕초보 종합 학습 가이드</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px 0;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .python-logo {
+            background: linear-gradient(135deg, #3776ab, #ffde57);
+            color: #ffde57;
+        }
+        
+        .flask-logo {
+            background: linear-gradient(135deg, #000000, #ffffff);
+            color: white;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #4a6491;
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2 i {
+            margin-right: 10px;
+            background: #4a6491;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .step-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 280px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+        
+        .step h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+        }
+        
+        .step-content {
+            padding: 10px;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+        
+        .code-comment {
+            color: #7fdbca;
+        }
+        
+        .code-keyword {
+            color: #ff7b72;
+        }
+        
+        .code-function {
+            color: #d2a8ff;
+        }
+        
+        .code-string {
+            color: #a5d6ff;
+        }
+        
+        .code-html {
+            color: #ffab70;
+        }
+        
+        .tip-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background: #ffecb3;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .practice-section {
+            background: linear-gradient(135deg, #4a6491, #2c3e50);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .practice-section h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #2c3e50;
+            color: white;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 90%;
+            padding: 0 4px;
+            font-weight: bold;
+        }
+        
+        .common-mistakes {
+            background: #fff8e1;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 6px solid #ffc107;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .common-mistakes h3 {
+            color: #d35400;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .common-mistakes ul {
+            padding-left: 25px;
+        }
+        
+        .common-mistakes li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .common-mistakes li b {
+            color: #c0392b;
+        }
+        
+        .mistake-solution {
+            background: #fff;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-top: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .final-tips {
+            background: linear-gradient(135deg, #1a2a6c, #4a6491);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .final-tips h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .tip-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .tip-card {
+            flex: 1;
+            min-width: 280px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .tip-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .tip-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .tip-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .step-container, .tip-cards {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo {
+                width: 90px;
+                height: 90px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Flask & Python 왕초보 종합 학습 가이드</h1>
+            <p>파이썬과 Flask를 처음 접하는 분들을 위한 모든 것! 단계별로 쉽게 배워보세요.</p>
+            
+            <div class="logo-container">
+                <div class="logo python-logo">Py</div>
+                <div class="logo flask-logo">Fl</div>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="section">
+                <h2><i>1</i> 파이썬(Python)이란?</h2>
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <h3>초보자에게 좋은 언어</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>파이썬은 영어 문법처럼 자연스러운 프로그래밍 언어입니다. 배우기 쉽고 작성하기 편리해서 전 세계에서 가장 인기 있는 언어 중 하나입니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <h3>다양한 분야에서 사용</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>웹 개발, 데이터 분석, 인공지능, 자동화, 게임 개발 등 거의 모든 분야에서 사용됩니다. 특히 시작하기 좋은 언어입니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <h3>간결하고 강력함</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>다른 언어에 비해 코드가 간결하고 가독성이 높습니다. "Hello, World!" 출력이 한 줄로 가능할 정도로 간단합니다.</p>
+                            <div class="code-block">
+                                <span class="code-function">print</span>(<span class="code-string">"안녕하세요, 파이썬!"</span>)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i>2</i> Flask란 무엇인가?</h2>
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <h3>웹 개발을 위한 도구</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>Flask는 파이썬으로 웹사이트를 만들 수 있게 해주는 작고 강력한 도구입니다. 마이크로 웹 프레임워크라고 불립니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">5</div>
+                            <h3>간단하고 유연함</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>복잡한 설정 없이도 웹 애플리케이션을 빠르게 만들 수 있습니다. 필요한 기능만 골라서 사용할 수 있어서 초보자에게 적합합니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">6</div>
+                            <h3>무엇을 만들 수 있나?</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>블로그, 쇼핑몰, API 서버, 데이터 대시보드 등 거의 모든 종류의 웹 애플리케이션을 만들 수 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i>3</i> Flask 설치와 기본 구조</h2>
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">7</div>
+                            <h3>Flask 설치하기</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>명령 프롬프트나 터미널에서 다음 명령어를 입력합니다:</p>
+                            <div class="code-block">
+                                pip <span class="code-keyword">install</span> flask
+                            </div>
+                            <div class="tip-box">
+                                <p><strong>팁:</strong> pip는 파이썬 패키지 설치 도구로, 파이썬을 설치하면 자동으로 포함됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">8</div>
+                            <h3>기본 구조 시작하기</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>Flask 애플리케이션은 다음과 같은 기본 구조로 시작합니다:</p>
+                            <div class="code-block">
+                                <span class="code-keyword">from</span> flask <span class="code-keyword">import</span> Flask
+                                <br><br>
+                                <span class="code-comment"># Flask 애플리케이션 생성</span>
+                                <br>app = Flask(<span class="code-function">__name__</span>)
+                                <br><br>
+                                <span class="code-comment"># 루트 경로(/)에 접속했을 때 실행할 함수</span>
+                                <br>@app.<span class="code-function">route</span>(<span class="code-string">'/'</span>)
+                                <br><span class="code-keyword">def</span> <span class="code-function">home</span>():
+                                <br>&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"안녕하세요, Flask!"</span>
+                                <br><br>
+                                <span class="code-comment"># 애플리케이션 실행</span>
+                                <br><span class="code-keyword">if</span> <span class="code-function">__name__</span> == <span class="code-string">'__main__'</span>:
+                                <br>&nbsp;&nbsp;app.<span class="code-function">run</span>(debug=<span class="code-keyword">True</span>)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">9</div>
+                            <h3>코드 설명</h3>
+                        </div>
+                        <div class="step-content">
+                            <ul>
+                                <li><span class="highlight">from flask import Flask</span>: Flask 모듈 가져오기</li>
+                                <li><span class="highlight">app = Flask(__name__)</span>: Flask 애플리케이션 생성</li>
+                                <li><span class="highlight">@app.route('/')</span>: 웹 주소(/)에 접속했을 때 실행할 함수 지정</li>
+                                <li><span class="highlight">def home():</span>: 실제로 실행할 함수 정의</li>
+                                <li><span class="highlight">app.run(debug=True)</span>: 서버 실행 (디버그 모드 활성화)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i>4</i> Flask로 HTML 만들기</h2>
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">10</div>
+                            <h3>render_template_string</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>Flask에서 HTML을 사용하려면 <span class="highlight">render_template_string</span> 함수를 사용합니다:</p>
+                            <div class="code-block">
+                                <span class="code-keyword">from</span> flask <span class="code-keyword">import</span> render_template_string
+                                <br><br>
+                                @app.<span class="code-function">route</span>(<span class="code-string">'/'</span>)
+                                <br><span class="code-keyword">def</span> <span class="code-function">home</span>():
+                                <br>&nbsp;&nbsp;html_content = <span class="code-string">'''</span>
+                                <br><span class="code-string">&lt;html&gt;</span>
+                                <br><span class="code-string">&lt;head&gt;&lt;title&gt;나의 첫 웹페이지&lt;/title&gt;&lt;/head&gt;</span>
+                                <br><span class="code-string">&lt;body&gt;</span>
+                                <br><span class="code-string">&lt;h1&gt;안녕하세요!&lt;/h1&gt;</span>
+                                <br><span class="code-string">&lt;p&gt;이것은 Flask로 만든 웹페이지입니다.&lt;/p&gt;</span>
+                                <br><span class="code-string">&lt;/body&gt;</span>
+                                <br><span class="code-string">&lt;/html&gt;'''</span>
+                                <br>&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-function">render_template_string</span>(html_content)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">11</div>
+                            <h3>HTML 기본 구조</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>모든 HTML 문서는 기본적으로 다음 구조를 가집니다:</p>
+                            <div class="code-block">
+                                <span class="code-html">&lt;!DOCTYPE html&gt;</span>
+                                <br><span class="code-html">&lt;html&gt;</span>
+                                <br><span class="code-html">&lt;head&gt;</span>
+                                <br>&nbsp;&nbsp;<span class="code-html">&lt;title&gt;</span>페이지 제목<span class="code-html">&lt;/title&gt;</span>
+                                <br><span class="code-html">&lt;/head&gt;</span>
+                                <br><span class="code-html">&lt;body&gt;</span>
+                                <br>&nbsp;&nbsp;<span class="code-comment">&lt;!-- 내용 작성 --&gt;</span>
+                                <br><span class="code-html">&lt;/body&gt;</span>
+                                <br><span class="code-html">&lt;/html&gt;</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">12</div>
+                            <h3>자주 사용하는 HTML 태그</h3>
+                        </div>
+                        <div class="step-content">
+                            <ul>
+                                <li><span class="highlight">&lt;h1&gt; ~ &lt;h6&gt;</span>: 제목 (숫자가 작을수록 큰 제목)</li>
+                                <li><span class="highlight">&lt;p&gt;</span>: 문단</li>
+                                <li><span class="highlight">&lt;a href="..."&gt;</span>: 링크</li>
+                                <li><span class="highlight">&lt;img src="..."&gt;</span>: 이미지</li>
+                                <li><span class="highlight">&lt;div&gt;</span>: 영역 구분</li>
+                                <li><span class="highlight">&lt;style&gt;</span>: CSS 스타일</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i>5</i> Flask 애플리케이션 실행</h2>
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">13</div>
+                            <h3>파일 저장하기</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>코드를 <span class="highlight">app.py</span> 파일로 저장합니다. (다른 이름도 가능하지만 app.py가 일반적)</p>
+                            <div class="warning-box">
+                                <p><strong>주의:</strong> 파일 인코딩은 UTF-8로 저장해야 한글이 정상적으로 표시됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">14</div>
+                            <h3>터미널에서 실행</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>파일이 저장된 폴더에서 터미널을 열고 다음 명령어를 입력합니다:</p>
+                            <div class="code-block">
+                                python app.py
+                            </div>
+                            <p>성공적으로 실행되면 다음과 같은 메시지가 표시됩니다:</p>
+                            <div class="code-block">
+                                * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+                                <br>* Restarting with stat
+                                <br>* Debugger is active!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">15</div>
+                            <h3>웹 브라우저에서 확인</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>웹 브라우저를 열고 주소창에 다음을 입력합니다:</p>
+                            <div class="code-block">
+                                http://localhost:5000
+                            </div>
+                            <p>또는</p>
+                            <div class="code-block">
+                                http://127.0.0.1:5000
+                            </div>
+                            <p>만든 웹페이지가 표시되는지 확인합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i>6</i> 디버깅과 팁</h2>
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">16</div>
+                            <h3>디버그 모드</h3>
+                        </div>
+                        <div class="step-content">
+                            <p>개발 중에는 <span class="highlight">debug=True</span>를 설정하는 것이 좋습니다:</p>
+                            <div class="code-block">
+                                app.<span class="code-function">run</span>(debug=<span class="code-keyword">True</span>)
+                            </div>
+                            <ul>
+                                <li>에러 발생 시 상세한 정보 표시</li>
+                                <li>코드 수정 후 자동으로 서버 재시작</li>
+                                <li>실제 서비스 환경에서는 <span class="highlight">반드시 False로 변경</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">17</div>
+                            <h3>자주 발생하는 오류</h3>
+                        </div>
+                        <div class="step-content">
+                            <ul>
+                                <li><span class="highlight">들여쓰기 오류</span>: 파이썬은 들여쓰기가 매우 중요합니다</li>
+                                <li><span class="highlight">괄호 불일치</span>: (), {}, [], '', "" 항상 쌍으로 맞추기</li>
+                                <li><span class="highlight">한글 깨짐</span>: 파일 인코딩을 UTF-8로 설정</li>
+                                <li><span class="highlight">포트 충돌</span>: 다른 프로그램이 5000번 포트를 사용 중일 때</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">18</div>
+                            <h3>학습 방법</h3>
+                        </div>
+                        <div class="step-content">
+                            <ol>
+                                <li>하루에 30분씩 꾸준히 학습하기</li>
+                                <li>반드시 <span class="highlight">직접 타이핑</span>하며 연습</li>
+                                <li>오류 메시지를 잘 읽고 검색하기</li>
+                                <li>간단한 프로젝트부터 시작하기</li>
+                                <li>다른 사람의 코드를 분석하기</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 흔한 실수 섹션 추가 -->
+            <div class="common-mistakes">
+                <h3>🚨 흔한 실수 3가지</h3>
+                <ul>
+                    <li>
+                        <b>들여쓰기 오류</b>: 파이썬은 띄어쓰기 4칸 필수!
+                        <div class="mistake-solution">
+                            <p>해결법: 모든 블록(함수, 조건문, 반복문)은 4칸 들여쓰기로 시작해야 합니다.</p>
+                            <div class="code-block">
+                                <span class="code-keyword">def</span> <span class="code-function">hello</span>():
+                                <br><span class="code-comment" style="margin-left: 20px;"># 4칸 들여쓰기</span>
+                                <br><span class="code-keyword" style="margin-left: 20px;">return</span> <span class="code-string">"Hello"</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <b>괄호 불일치</b>: ( ), { }, [ ], ' ' 항상 쌍으로
+                        <div class="mistake-solution">
+                            <p>해결법: 열린 괄호는 항상 닫힌 괄호와 짝을 이루어야 합니다.</p>
+                            <div class="code-block">
+                                <span class="code-comment"># 올바른 예</span>
+                                <br>app = Flask(<span class="code-function">__name__</span>)
+                                <br><br>
+                                <span class="code-comment"># 잘못된 예 (닫는 괄호 누락)</span>
+                                <br>app = Flask(<span class="code-function">__name__</span> <span class="code-comment"># 오류 발생!</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <b>한글 깨짐</b>: 파일 인코딩 → 반드시 UTF-8 사용
+                        <div class="mistake-solution">
+                            <p>해결법: 코드 편집기에서 파일을 저장할 때 인코딩을 UTF-8로 설정합니다.</p>
+                            <div class="code-block">
+                                <span class="code-comment"># 파일 맨 위에 인코딩 선언 추가</span>
+                                <br><span class="code-comment"># -*- coding: utf-8 -*-</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="practice-section">
+                <h2>지금 바로 연습해보세요!</h2>
+                <p>배운 내용을 직접 실습해보는 것이 가장 좋은 학습 방법입니다.</p>
+                
+                <div>
+                    <button class="btn">코드 직접 작성하기</button>
+                    <button class="btn btn-outline">예제 다운로드</button>
+                </div>
+                
+                <p style="margin-top: 25px; opacity: 0.9;">Flask는 파이썬의 강력함과 웹의 유연함을 결합한 훌륭한 도구입니다. 오늘 첫 걸음을 내딛으셨습니다!</p>
+            </div>
+            
+            <div class="final-tips">
+                <h3>✨ 초보자를 위한 최종 학습 팁</h3>
+                <div class="tip-cards">
+                    <div class="tip-card">
+                        <i>📝</i>
+                        <h4>작은 것부터 시작</h4>
+                        <p>"Hello World"부터 시작해서 점차 복잡한 프로젝트로 확장해 나가세요.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i>🔁</i>
+                        <h4>반복 학습</h4>
+                        <p>하루 30분이라도 매일 꾸준히 학습하는 것이 중요합니다.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i>🧩</i>
+                        <h4>실수는 학습 기회</h4>
+                        <p>오류 메시지를 두려워하지 말고, 해결 과정에서 배우세요.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Flask & Python 왕초보 종합 학습 가이드 | 파이썬과 웹 개발의 첫걸음</p>
+            <p style="margin-top: 10px; opacity: 0.8;">"꾸준함이 능력이다. 하루에 30분이라도 매일하라."</p>
+        </footer>
+    </div>
+</body>
+</html>
