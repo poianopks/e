@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flask 왕초보 가이드</title>
+  <style>
+    body {
+      font-family: '맑은 고딕', sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .step {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .step-number {
+      background: #4CAF50;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: Consolas;
+    }
+    .flask { color: #d9534f; }
+    .python { color: #337ab7; }
+    .html { color: #5cb85c; }
+  </style>
+</head>
+<body>
+  <h1>🎯 Flask 완전 초보 가이드 (18단계)</h1>
+
+  <div class="step">
+    <div><span class="step-number">1</span> <span class="python">파이썬(Python)</span>이란?</div>
+    <p>▶ 사람 말처럼 쉽게 배울 수 있는 프로그래밍 언어<br>▶ 웹 개발, 데이터 분석, 인공지능 등에 사용</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">2</span> <span class="flask">Flask</span>란?</div>
+    <p>▶ 파이썬으로 <b>웹사이트를 만드는 도구상자</b><br>▶ 레고 조립하듯 간단하게 웹앱 제작 가능</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">3</span> 필수 설치</div>
+    <p>▶ 파이썬 설치: <a href="https://python.org" target="_blank">공식사이트</a><br>▶ 명령창에서: <code>pip install flask</code></p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">4</span> 기본 구조 시작</div>
+    <p><code>from flask import Flask<br>app = Flask(__name__)</code></p>
+    <p>▶ Flask 도구 가져오기<br>▶ 'app'이 우리 웹앱의 이름</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">5</span> 라우팅(Route)</div>
+    <p><code>@app.route('/')</code></p>
+    <p>▶ "사용자가 <b>/ 주소</b>로 접속하면~" 이라는 뜻<br>▶ 예) www.naver.com/<b>news</b></p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">6</span> 뷰 함수(View Function)</div>
+    <p><code>def hello():<br>&nbsp;&nbsp;return "안녕하세요!"</code></p>
+    <p>▶ 사용자에게 <b>보여줄 내용</b>을 반환하는 함수</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">7</span> HTML 출력하기</div>
+    <p><code>render_template_string()</code></p>
+    <p>▶ <span class="html">HTML 코드</span>를 문자열로 만들어서 반환</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">8</span> 삼중따옴표 사용</div>
+    <p><code>'''<br>&lt;html&gt;...&lt;/html&gt;<br>'''</code></p>
+    <p>▶ 여러 줄의 <span class="html">HTML</span>을 편하게 작성하는 기술</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">9</span> HTML 기본 구조</div>
+    <pre>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;제목&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    내용
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">10</span> 제목 추가</div>
+    <p><code>&lt;h1&gt;안녕하세요!&lt;/h1&gt;</code></p>
+    <p>▶ 가장 큰 크기의 제목 태그</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">11</span> 문단 추가</div>
+    <p><code>&lt;p&gt;설명글...&lt;/p&gt;</code></p>
+    <p>▶ 일반 텍스트를 표시하는 태그</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">12</span> 스타일 적용</div>
+    <p><code>&lt;body style="text-align: center;"&gt;</code></p>
+    <p>▶ <b>가운데 정렬</b>처럼 간단한 디자인 적용</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">13</span> 앱 실행 코드</div>
+    <p><code>if __name__ == '__main__':<br>&nbsp;&nbsp;app.run(debug=True)</code></p>
+    <p>▶ "이 파일이 직접 실행될 때" 웹서버 시작</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">14</span> 디버그 모드</div>
+    <p><code>debug=True</code></p>
+    <p>▶ 오류 발생 시 <b>상세정보 표시</b><br>▶ 개발 중에만 사용 (배포 시 False)</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">15</span> 파일 저장</div>
+    <p>▶ 파일명: <code>app.py</code><br>▶ 인코딩: <b>UTF-8</b> (한글 지원 필수!)</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">16</span> 실행 방법</div>
+    <p>1. 터미널 열기<br>2. <code>python app.py</code> 입력<br>3. 서버 시작 메시지 확인</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">17</span> 접속 확인</div>
+    <p>▶ 브라우저 주소창에:<br><code>http://localhost:5000</code></p>
+    <p>▶ "안녕하세요!" 페이지가 보여야 함</p>
+  </div>
+
+  <div class="step">
+    <div><span class="step-number">18</span> 수정 후 재시작</div>
+    <p>▶ 코드 수정 → <b>서버 재시작</b><br>▶ Ctrl+C (중지) → 다시 실행</p>
+  </div>
+
+  <h3>🎁 왕초보 학습법</h3>
+  <ol>
+    <li>위 단계를 하루에 3개씩 공부</li>
+    <li>반드시 <b>직접 타이핑</b>하며 연습</li>
+    <li>오류 발생 시 → 메시지 <b>복사해서 검색</b></li>
+    <li>간단한 것부터 점진적으로 확장</li>
+  </ol>
+  
+  <blockquote style="background:#e3f2fd;padding:10px;">
+    💡 "기억보다 중요한 건 <b>반복</b>입니다!<br>
+    &nbsp;&nbsp;&nbsp;하루 30분이라도 꾸준히 해보세요."
+  </blockquote>
+</body>
+</html>
