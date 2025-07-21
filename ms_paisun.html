@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>파이썬 기초 왕초보 유치원</title>
+  <style>
+    body {
+      background: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      margin: 0; padding: 0;
+    }
+    header {
+      background: #0366d6;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    details {
+      background: #fff;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    summary {
+      padding: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      list-style: none;
+    }
+    details[open] summary {
+      background: #e1eaff;
+    }
+    details p, details pre {
+      padding: 0 1rem 1rem 1rem;
+      margin: 0;
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 0.75rem;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    h2 {
+      border-bottom: 2px solid #0366d6;
+      padding-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>파이썬 기초 왕초보 유치원 🌱</h1>
+  </header>
+  <div class="container">
+
+    <!-- 1~30 기초 토픽 -->
+    <h2>기본 토픽 1~30</h2>
+
+    <details>
+      <summary>1. 파이썬 소개</summary>
+      <p>파이썬이 무엇이고, 왜 인기 있는 프로그래밍 언어인지 이해합니다.</p>
+      <pre>
+# 파이썬 특징 출력
+print("Python: 쉽고 강력해요!")</pre>
+    </details>
+
+    <details>
+      <summary>2. 파이썬 설치 및 개발 환경 설정</summary>
+      <p>공식 사이트에서 설치 파일을 받고, VSCode나 PyCharm 같은 IDE를 준비합니다.</p>
+      <pre>
+# 설치 확인
+python --version</pre>
+    </details>
+
+    <details>
+      <summary>3. Hello Python: 첫 코드 실행하기</summary>
+      <p>간단한 인사말을 출력해보고, 스크립트 실행법을 익힙니다.</p>
+      <pre>
+print("Hello, Python!")</pre>
+    </details>
+
+    <details>
+      <summary>4. 변수와 데이터 타입</summary>
+      <p>숫자, 문자열, 불리언 등 기본 자료형을 배우고 변수를 선언합니다.</p>
+      <pre>
+name = "가나성실"
+age = 30
+is_student = True</pre>
+    </details>
+
+    <details>
+      <summary>5. 숫자형 연산</summary>
+      <p>덧셈, 뺄셈, 곱셈, 나눗셈, 지수 연산을 실습합니다.</p>
+      <pre>
+a = 10
+b = 3
+print(a + b, a / b, a ** b)</pre>
+    </details>
+
+    <details>
+      <summary>6. 문자열 다루기</summary>
+      <p>문자열 연결, 포맷팅(f-string), 슬라이싱을 연습합니다.</p>
+      <pre>
+s = "Python"
+print(s + " 배우기")
+print(f"{s} 최고!")</pre>
+    </details>
+
+    <details>
+      <summary>7. 리스트 기초</summary>
+      <p>리스트 생성, 인덱싱, 추가·삭제 메서드를 알아봅니다.</p>
+      <pre>
+fruits = ["사과", "바나나"]
+fruits.append("오렌지")
+print(fruits[1])</pre>
+    </details>
+
+    <details>
+      <summary>8. 튜플과 세트 이해</summary>
+      <p>튜플의 불변성과 세트의 고유성 특징을 비교합니다.</p>
+      <pre>
+t = (1, 2, 3)
+s = {1, 2, 2, 3}
+print(t, s)</pre>
+    </details>
+
+    <details>
+      <summary>9. 딕셔너리 사용법</summary>
+      <p>키-값 쌍으로 데이터를 저장하고 조회하는 방법을 실습합니다.</p>
+      <pre>
+person = {"이름":"가나", "나이":25}
+print(person["이름"])</pre>
+    </details>
+
+    <details>
+      <summary>10. 조건문 (if)</summary>
+      <p>if, elif, else 구조로 분기 처리를 배웁니다.</p>
+      <pre>
+score = 85
+if score >= 90:
+    print("A학점")
+elif score >= 80:
+    print("B학점")
+else:
+    print("C 이하")</pre>
+    </details>
+
+    <details>
+      <summary>11. 반복문 (for)</summary>
+      <p>리스트나 문자열을 순회하며 반복 작업을 처리합니다.</p>
+      <pre>
+for i in [1,2,3]:
+    print(i)</pre>
+    </details>
+
+    <details>
+      <summary>12. 반복문 (while)</summary>
+      <p>조건이 참일 때까지 반복하는 while문을 사용합니다.</p>
+      <pre>
+n = 5
+while n > 0:
+    print(n)
+    n -= 1</pre>
+    </details>
+
+    <details>
+      <summary>13. 함수 정의하기</summary>
+      <p>def 키워드로 재사용 가능한 코드를 묶는 법을 익힙니다.</p>
+      <pre>
+def add(a, b):
+    return a + b
+
+print(add(3,4))</pre>
+    </details>
+
+    <details>
+      <summary>14. 모듈과 패키지 사용</summary>
+      <p>import를 통해 표준·외부 라이브러리를 불러와 사용합니다.</p>
+      <pre>
+import math
+print(math.sqrt(16))</pre>
+    </details>
+
+    <details>
+      <summary>15. 파일 읽기/쓰기</summary>
+      <p>open으로 파일을 열고, 텍스트를 쓰고 읽는 방법을 배웁니다.</p>
+      <pre>
+with open("data.txt","w") as f:
+    f.write("안녕하세요")
+with open("data.txt") as f:
+    print(f.read())</pre>
+    </details>
+
+    <details>
+      <summary>16. 예외 처리</summary>
+      <p>try/except로 오류에 대비하고 프로그램을 안정화합니다.</p>
+      <pre>
+try:
+    x = 1/0
+except ZeroDivisionError:
+    print("0으로 나눌 수 없어요")</pre>
+    </details>
+
+    <details>
+      <summary>17. 리스트 컴프리헨션</summary>
+      <p>간결한 문법으로 리스트를 생성하는 고급 기법을 익힙니다.</p>
+      <pre>
+squares = [x**2 for x in range(5)]
+print(squares)</pre>
+    </details>
+
+    <details>
+      <summary>18. 람다 함수</summary>
+      <p>간단한 익명 함수를 정의해 map, filter와 함께 사용합니다.</p>
+      <pre>
+add = lambda a,b: a+b
+print(add(2,3))</pre>
+    </details>
+
+    <details>
+      <summary>19. 클래스와 객체지향 기초</summary>
+      <p>class 키워드로 객체를 정의하고 인스턴스를 생성합니다.</p>
+      <pre>
+class Dog:
+    def __init__(self, name):
+        self.name = name
+
+d = Dog("바둑이")
+print(d.name)</pre>
+    </details>
+
+    <details>
+      <summary>20. 상속과 다형성</summary>
+      <p>부모 클래스를 상속받아 기능을 확장하거나 재정의합니다.</p>
+      <pre>
+class Animal:
+    def talk(self):
+        print("소리내기")
+class Cat(Animal):
+    def talk(self):
+        print("야옹")
+c = Cat()
+c.talk()</pre>
+    </details>
+
+    <details>
+      <summary>21. 표준 라이브러리 (datetime)</summary>
+      <p>날짜와 시간을 다루는 datetime 모듈을 사용해 봅니다.</p>
+      <pre>
+import datetime
+print(datetime.datetime.now())</pre>
+    </details>
+
+    <details>
+      <summary>22. 외부 라이브러리 설치 (pip)</summary>
+      <p>pip install로 필요한 패키지를 설치하는 법을 배웁니다.</p>
+      <pre>
+# 터미널에서 실행
+pip install requests</pre>
+    </details>
+
+    <details>
+      <summary>23. 가상환경 설정 (venv)</summary>
+      <p>venv로 프로젝트별 가상환경을 관리해 충돌을 방지합니다.</p>
+      <pre>
+python -m venv myenv
+source myenv/bin/activate</pre>
+    </details>
+
+    <details>
+      <summary>24. 디버깅 기초</summary>
+      <p>print 디버깅과 함께 pdb로 한 줄씩 코드를 점검합니다.</p>
+      <pre>
+import pdb; pdb.set_trace()</pre>
+    </details>
+
+    <details>
+      <summary>25. 간단한 프로젝트 만들기</summary>
+      <p>지금까지 배운 내용을 종합해 작은 프로젝트를 설계 및 구현합니다.</p>
+      <pre>
+# 예: 할 일 리스트 앱
+tasks = []
+def add_task(t):
+    tasks.append(t)</pre>
+    </details>
+
+    <details>
+      <summary>26. Git과 연동하기</summary>
+      <p>git init, add, commit 명령으로 버전 관리를 시작합니다.</p>
+      <pre>
+git init
+git add .
+git commit -m "첫 커밋"</pre>
+    </details>
+
+    <details>
+      <summary>27. 주석과 좋은 코드 스타일</summary>
+      <p>#로 주석을 달고, PEP8 스타일 가이드를 따라 가독성을 높입니다.</p>
+      <pre>
+# 이 함수는 덧셈을 수행합니다
+def add(a, b):
+    return a + b</pre>
+    </details>
+
+    <details>
+      <summary>28. 입력값 받기 (input)</summary>
+      <p>input()으로 사용자 입력을 받고, 필요하면 형변환합니다.</p>
+      <pre>
+name = input("이름을 입력하세요: ")
+print(f"안녕하세요, {name}님!")</pre>
+    </details>
+
+    <details>
+      <summary>29. 출력 포맷팅 (f-string)</summary>
+      <p>f-string으로 문자열 내 변수 값을 쉽게 표현합니다.</p>
+      <pre>
+score = 95
+print(f"최종 점수는 {score}점입니다")</pre>
+    </details>
+
+    <details>
+      <summary>30. 실습: 미니 프로젝트 - 계산기 만들기</summary>
+      <p>간단한 사칙연산 계산기를 만들어 함수 호출 구조를 익힙니다.</p>
+      <pre>
+def calculator(a,b,op):
+    return {"+" : a+b, "-" : a-b, "*" : a*b, "/" : a/b}.get(op)
+print(calculator(8,2,"/"))</pre>
+    </details>
+
+    <hr>
+
+    <!-- 추가 팁 -->
+    <h2>추가 팁: 파이썬으로 주식·가치·종목 분석 & 뉴스 가져오기</h2>
+
+    <details>
+      <summary>• 주식 시세 가져오기 (yfinance)</summary>
+      <p>yfinance 패키지로 간단히 주식 종목 데이터를 불러올 수 있습니다.</p>
+      <pre>
+import yfinance as yf
+
+msft = yf.Ticker("MSFT")
+df = msft.history(period="1mo")
+print(df.head())</pre>
+    </details>
+
+    <details>
+      <summary>• 가치 분석 (PER, PBR 계산)</summary>
+      <p>yfinance로 시가총액·주당순이익 데이터를 가져와 PER/PBR을 계산합니다.</p>
+      <pre>
+info = msft.info
+pe_ratio = info["marketCap"] / (info["trailingEps"] * info["sharesOutstanding"])
+print("PER:", round(pe_ratio,2))</pre>
+    </details>
+
+    <details>
+      <summary>• 종목 분석 (기본 재무제표 조회)</summary>
+      <p>삼성전자나 다른 종목의 재무제표를 조회하여 주요 지표를 확인합니다.</p>
+      <pre>
+ticker = yf.Ticker("005930.KS")
+print(ticker.financials)  # 손익계산서</pre>
+    </details>
+
+    <details>
+      <summary>• 뉴스 가져오기 (requests + BeautifulSoup)</summary>
+      <p>웹 스크래핑으로 실시간 뉴스 제목을 추출해봅니다.</p>
+      <pre>
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://finance.naver.com/news/"
+res = requests.get(url)
+soup = BeautifulSoup(res.text, "html.parser")
+for a in soup.select(".titles"):
+    print(a.get_text().strip())</pre>
+    </details>
+
+  </div>
+</body>
+</html>
